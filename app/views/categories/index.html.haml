@@ -1,0 +1,4 @@
+%ul
+  - @categories.each do |c|
+    %li
+      = link_to t(c.name), category_path(c)

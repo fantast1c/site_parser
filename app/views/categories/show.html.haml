@@ -1,0 +1,15 @@
+%h4
+  = "number of products: #{@products.count}"
+= form_tag category_search_path(@category) do
+  = select_tag :brand,
+    options_from_collection_for_select(@category.brands, :id, :name, @brand.try(:id)),
+    include_blank: t('select_brand')
+  = text_field_tag :from_price, nil, placeholder: :from
+  = text_field_tag :to_price, nil, placeholder: :to
+  = submit_tag :search
+%ul
+  %li
+    = link_to :back, categories_path
+  - @products.each do |p|
+    %li
+      = product_details(p)
